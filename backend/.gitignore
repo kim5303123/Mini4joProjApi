@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# build output
+build/
+dist/
+
+# environment variables and logs
+.env
+*.log
+
+# system files
+.DS_Store
+
+# cursor project files
+.cursor/ 
+.history/

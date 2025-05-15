@@ -1,27 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/App.css';
+import { convertMailTone } from './api/mailToneApi';
+
+const formats = ['결제', '사과', '업무요청'];
+const situationMap = {
+  '결제': '결제',
+  '사과': '사과',
+  '업무요청': '업무요청',
+};
+const recipientMap = {
+  '외부': '외부 메일',
+  '내부': '내부 메일',
+};
 
 function App() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [selectedSituation, setSelectedSituation] = useState('');
   const [selectedTarget, setSelectedTarget] = useState('');
-  const formats = ['결제요청 메일', '사과 메일', '업무 협조 요청 메일'];
-  const to = ['외부', '내부']
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const to = ['외부', '내부'];
 
-  const handleConvert = () => {
-    console.log('선택된 상황:', selectedSituation);
-    console.log('선택된 대상:', selectedTarget);
-    setOutputText(inputText); // 나중에 조건 맞춰 변환하도록 개선 가능
+  const handleConvert = async () => {
+    setError('');
+    if (!selectedSituation || !selectedTarget || !inputText) {
+      setError('상황, 대상, 내용을 모두 입력해 주세요.');
+      return;
+    }
+    setLoading(true);
+    setOutputText('');
+    try {
+      const res = await convertMailTone({
+        situation: situationMap[selectedSituation],
+        recipient: recipientMap[selectedTarget],
+        content: inputText,
+      });
+      setOutputText(res.converted_content);
+    } catch (e) {
+      setError('변환 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getTemplate = (situation) => {
     switch (situation) {
-      case '결제요청 메일':
+      case '결제':
         return `예시) 안녕하세요, OOO입니다.\n이번 달 OO비용에 대한 결제를 요청드립니다.\n확인 부탁드립니다.`;
-      case '사과 메일':
+      case '사과':
         return `예시) 안녕하세요, OOO입니다.\n이번 일에 대해 불편을 드려 정말 죄송합니다.\n다시는 같은 일이 발생하지 않도록 주의하겠습니다.`;
-      case '업무 협조 요청 메일':
+      case '업무요청':
         return `예시) 안녕하세요, OOO입니다.\nOO 프로젝트와 관련하여 협조 요청드립니다.\n자세한 사항은 아래 내용을 참고해 주세요.`;
       default:
         return `예시) 안녕하세요, OOO입니다.\n저는 OO팀에서 OO업무를 담당하고 있는 OOO입니다.\n이번에 OO 관련하여 문의드립니다.`;
@@ -66,9 +95,9 @@ function App() {
             <div className="format-buttons-wrapper">
               {to.map((t) => (
                 <button
-                key={t}
-                className={`format-btn${selectedTarget === t ? ' selected' : ''}`}
-                onClick={() => setSelectedTarget(t)}
+                  key={t}
+                  className={`format-btn${selectedTarget === t ? ' selected' : ''}`}
+                  onClick={() => setSelectedTarget(t)}
                   type="button"
                 >
                   {t}
@@ -78,7 +107,6 @@ function App() {
           </div>
         </div>
       </div>
-
 
       <main className="content-flex">
         <div className="box left-box">
@@ -95,9 +123,11 @@ function App() {
                 onChange={(e) => setInputText(e.target.value)}
               />
               <div className="input-toolbar">
-                {/* <span className="input-counter">{inputText.length} / 5000</span> */}
-                <button className="convert-inline-btn" onClick={handleConvert}>변환하기</button>
+                <button className="convert-inline-btn" onClick={handleConvert} disabled={loading}>
+                  {loading ? '변환 중...' : '변환하기'}
+                </button>
               </div>
+              {error && <div className="error-message">{error}</div>}
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: #051a2b; */
   min-height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
   overflow: hidden;
@@ -11,7 +10,7 @@ body {
 .main-wrapper {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 60px 0 32px 0;
+  padding: 15px 0 20px 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,7 +18,7 @@ body {
 }
 
 .page-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
   color: #222;
@@ -43,7 +42,6 @@ body {
   width: 100%;
   /* max-width: 1000px; */
   justify-content: flex-start;
-  gap: 32px; 
 }
 
 .format-group {
@@ -61,8 +59,8 @@ body {
 }
 
 .format-btn {
-  font-size: 1.1rem;
-  padding: 12px 32px;
+  font-size: 1rem;
+  padding: 5px 15px;
   border-radius: 999px;
   border: 1.5px solid #4a90e2;
   background: #fff;
@@ -110,7 +108,7 @@ body {
   background: #f0f8ff;
   border-radius: 18px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  padding: 16px;
+  padding: 10px;
   min-width: 500px;
   min-height: 500px;
   display: flex;
@@ -140,10 +138,10 @@ h2 {
   position: relative;
 }
 
-.example-mail {
+/* .example-mail {
   margin: 0;
   padding: 0;
-}
+} */
 
 .example-mail h3 {
   display: none;

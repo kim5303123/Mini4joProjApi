@@ -16,5 +16,6 @@ dist/
 .cursor/ 
 .history/
 
+# pyc
 *.pyc
 __pycache__/

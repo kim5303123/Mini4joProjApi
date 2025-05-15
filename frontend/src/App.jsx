@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './styles/App.css';
 import { convertMailTone } from './api/mailToneApi';
+import { ChevronsRight } from 'lucide-react';
 
-const formats = ['사내 협조', '사과', '클라이언트 상대'];
+const formats = ['협조', '사과', '업무 진행 내용 전달'];
 const situationMap = {
   '결재': '결재',
   '사과': '사과',
@@ -106,6 +107,7 @@ function App() {
           <h2>전하고 싶은 말</h2>
           <div className="textarea-wrapper">
             <div className="template-preview">{getTemplate(selectedSituation)}</div>
+            <div className="template-divider" />
             <textarea
               className="input-textarea"
               placeholder="이 아래에 내용을 작성해 주세요"
@@ -113,6 +115,7 @@ function App() {
               onChange={(e) => setInputText(e.target.value)}
             />
             <div className="input-toolbar">
+              <div className="error-message">{error}</div>
               <button
                 className="convert-inline-btn"
                 onClick={handleConvert}
@@ -121,12 +124,12 @@ function App() {
                 {loading ? '변환 중...' : '변환하기'}
               </button>
             </div>
-            {error && <div className="error-message">{error}</div>}
           </div>
         </section>
 
         <div className="arrow-image-wrapper">
-          <img src="/assets/arrow4.png" alt="화살표" className="arrow-image" />
+          <ChevronsRight className={`arrow-icon arrow1 ${loading ? 'arrow-animate1' : ''}`} />
+          <ChevronsRight className={`arrow-icon arrow2 ${loading ? 'arrow-animate2' : ''}`} />
         </div>
 
         <section className="output-section">

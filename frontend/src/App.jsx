@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './styles/App.css';
 import { convertMailTone } from './api/mailToneApi';
 
-const formats = ['결제', '사과', '업무요청'];
+const formats = ['사내 협조', '사과', '클라이언트 상대'];
 const situationMap = {
-  '결제': '결제',
+  '결재': '결재',
   '사과': '사과',
   '업무요청': '업무요청',
 };
@@ -61,87 +61,80 @@ function App() {
     <div className="main-wrapper">
       <header className="page-title">
         <div className="title-row">
-          <img
-            src="/assets/Code snippets-cuate.png"
-            alt="일러스트"
-            className="hero-illustration"
-          />
+          <img src="/assets/Code snippets-cuate.png" alt="일러스트" className="hero-illustration" />
           <div className="title-text">
-            <h1>개떡을 찰떡으로!</h1>
+            <h1>개떡에서 찰떡으로!</h1>
             <p>정중하고 상황에 맞는 메일을 빠르게 완성해보세요</p>
           </div>
         </div>
       </header>
-      <div className="format-container">
-        <div className="format-buttons-row">
-          <div className="format-group">
-            <span className="format-label">상황 :</span>
-            <div className="format-buttons-wrapper">
-              {formats.map((f) => (
-                <button
-                  key={f}
-                  className={`format-btn${selectedSituation === f ? ' selected' : ''}`}
-                  onClick={() => setSelectedSituation(f)}
-                  type="button"
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </div>
 
-          <div className="format-group">
-            <span className="format-label">대상 :</span>
-            <div className="format-buttons-wrapper">
-              {to.map((t) => (
-                <button
-                  key={t}
-                  className={`format-btn${selectedTarget === t ? ' selected' : ''}`}
-                  onClick={() => setSelectedTarget(t)}
-                  type="button"
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
+      <section className="selector-section">
+        <div className="selector-group">
+          <span className="selector-label">상황 :</span>
+          <div className="selector-buttons">
+            {formats.map((f) => (
+              <button
+                key={f}
+                className={`selector-btn${selectedSituation === f ? ' selected' : ''}`}
+                onClick={() => setSelectedSituation(f)}
+              >
+                {f}
+              </button>
+            ))}
           </div>
         </div>
-      </div>
+
+        <div className="selector-group">
+          <span className="selector-label">대상 :</span>
+          <div className="selector-buttons">
+            {to.map((t) => (
+              <button
+                key={t}
+                className={`selector-btn${selectedTarget === t ? ' selected' : ''}`}
+                onClick={() => setSelectedTarget(t)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <main className="content-flex">
-        <div className="box left-box">
+        <section className="input-section">
           <h2>전하고 싶은 말</h2>
-          <div className="input-area-wrapper">
-            <div className="textarea-wrapper">
-              <div className="template-preview">
-                {getTemplate(selectedSituation)}
-              </div>
-              <textarea
-                className="input-textarea"
-                placeholder="이 아래에 내용을 작성해 주세요"
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-              />
-              <div className="input-toolbar">
-                <button className="convert-inline-btn" onClick={handleConvert} disabled={loading}>
-                  {loading ? '변환 중...' : '변환하기'}
-                </button>
-              </div>
-              {error && <div className="error-message">{error}</div>}
+          <div className="textarea-wrapper">
+            <div className="template-preview">{getTemplate(selectedSituation)}</div>
+            <textarea
+              className="input-textarea"
+              placeholder="이 아래에 내용을 작성해 주세요"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+            />
+            <div className="input-toolbar">
+              <button
+                className="convert-inline-btn"
+                onClick={handleConvert}
+                disabled={loading}
+              >
+                {loading ? '변환 중...' : '변환하기'}
+              </button>
             </div>
+            {error && <div className="error-message">{error}</div>}
           </div>
-        </div>
+        </section>
 
         <div className="arrow-image-wrapper">
           <img src="/assets/arrow4.png" alt="화살표" className="arrow-image" />
         </div>
 
-        <div className="box right-box">
+        <section className="output-section">
           <h2>다듬어진 말</h2>
           <div className="result-area">
             {outputText || '변환된 문장이 여기에 표시됩니다.'}
           </div>
-        </div>
+        </section>
       </main>
     </div>
   );

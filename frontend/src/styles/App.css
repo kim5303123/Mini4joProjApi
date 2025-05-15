@@ -1,264 +1,42 @@
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  font-family: 'Noto Sans KR', sans-serif;
-  overflow: hidden;
-  height: 100vh;
-}
-
+/* 전체 래퍼 */
 .main-wrapper {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 15px 0 20px 0;
-  min-height: 100vh;
+  padding: 32px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
+/* 페이지 타이틀 */
 .page-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   text-align: center;
   color: #222;
   background: #f0f6fb;
   border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-  padding: 16px;
+  /* padding: 12px; */
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto 16px auto;
+  margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.format-buttons-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 36px;
-  width: 100%;
-  /* max-width: 1000px; */
-  justify-content: flex-start;
-}
-
-.format-group {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.format-label {
-  font-size: 1.08rem;
-  color: #333;
-  font-weight: 500;
-  margin-right: 4px;
-  white-space: nowrap;
-}
-
-.format-btn {
-  font-size: 1rem;
-  padding: 5px 15px;
-  border-radius: 999px;
-  border: 1.5px solid #4a90e2;
-  background: #fff;
-  color: #357abd;
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.format-btn:hover {
-  background: #e6f0fa;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(74,144,226,0.15);
-}
-.format-btn.selected {
-  background: #4a90e2;
-  color: #fff;
-  border: 2px solid #357abd;
-  box-shadow: 0 4px 16px rgba(74,144,226,0.2);
-}
-
-.format-buttons-wrapper {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.content-flex {
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-  max-width: 1400px;
-  gap: 16px;
-  margin: 0 auto 36px auto;
-  justify-content: flex-start;
-}
-
-.format-container{
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.box {
-  background: #f0f8ff;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  padding: 10px;
-  min-width: 500px;
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-}
-
-.left-box {
-  flex: 1;
-  max-width: 66%;
-}
-
-.right-box {
-  flex: 1;
-  max-width: 34%;
-}
-
-h2 {
-  margin: 0 0 12px 0;
-  font-size: 1.2rem;
-  color: #222;
-}
-
-.mail-section {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  position: relative;
-}
-
-/* .example-mail {
-  margin: 0;
-  padding: 0;
-} */
-
-.example-mail h3 {
-  display: none;
-}
-
-.example-mail-content {
-  font-size: 0.95rem;
-  color: #999;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-style: italic;
-  padding: 4px 0;
-}
-
-.input-textarea {
-  resize: none;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 1rem;
-  min-height: 400px;
-  width: 100%;
-  line-height: 1.6;
-  padding: 4px 0 48px 0;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-.input-textarea:focus {
-  background: #fafdff;
-}
-
-.input-textarea::placeholder {
-  color: #bbb;
-  font-style: italic;
-}
-
-.input-toolbar {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: auto;
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
-  background: transparent;
-  z-index: 2;
-}
-
-.convert-inline-btn {
-  padding: 10px 24px;
-  border-radius: 999px;
-  border: 1.5px solid #4a90e2;
-  background: #fff;
-  color: #357abd;
-  font-weight: 500;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.convert-inline-btn:hover {
-  background: #e6f0fa;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(74,144,226,0.15);
-}
-
-.result-area {
-  flex: 1;
-  border: 3px solid #c0d3ea;
-  border-radius: 10px;
-  padding: 16px;
-  background: #fafdff;
-  font-size: 1.1rem;
-  min-height: 300px;
-  color: #444;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  white-space: pre-wrap;
-  display: flex;
-  align-items: flex-start;
-  margin: 0;
-}
-
-.app-center {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: #222;
-} 
-
+/* 타이틀 내부 구성 */
 .title-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 32px;
-  flex-wrap: wrap; /* 반응형 대응 */
-}
-
-.hero-illustration {
-  width: 140px;
-  height: auto;
-  object-fit: contain;
-}
-
-.title-text {
-  text-align: left;
 }
 
 .title-text h1 {
-  font-size: 2.2rem; 
+  font-size: 2.2rem;
   font-weight: 700;
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   color: #222;
 }
 
@@ -268,24 +46,95 @@ h2 {
   color: #555;
 }
 
-.arrow-image-wrapper {
+.hero-illustration {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 상황/대상 선택 섹션 */
+.selector-section {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 32px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.selector-group {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  height: auto;
-  align-self: stretch;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.arrow-image {
-  width: 35px;
-  height: auto;
-  opacity: 0.5;
-  transition: opacity 0.2s;
+.selector-label {
+  font-size: 1.08rem;
+  color: #333;
+  font-weight: 500;
+  margin-right: 4px;
 }
 
-.arrow-image:hover {
-  opacity: 0.7;
+.selector-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.selector-btn {
+  font-size: 1rem;
+  padding: 6px 20px;
+  border-radius: 999px;
+  border: 1.5px solid #4a90e2;
+  background: #fff;
+  color: #357abd;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.selector-btn:hover {
+  background: #e6f0fa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74,144,226,0.15);
+}
+
+.selector-btn.selected {
+  background: #4a90e2;
+  color: #fff;
+  border: 2px solid #357abd;
+  box-shadow: 0 4px 16px rgba(74,144,226,0.2);
+}
+
+/* 본문 섹션 */
+.content-flex {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  align-items: stretch;
+  flex: 1;
+  height: 100%;
+}
+
+.input-section, .output-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f0f8ff;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  padding: 16px 16px 24px 16px;
+  box-sizing: border-box;
+}
+
+.input-section {
+  max-width: 65%;
+}
+
+.output-section {
+  max-width: 35%;
 }
 
 .textarea-wrapper {
@@ -295,12 +144,73 @@ h2 {
   border-radius: 10px;
   background: #fafdff;
   padding: 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
   box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .textarea-wrapper:focus-within {
-  border: 3px solid #4a90e2;
+  border-color: #4a90e2;
+}
+
+.input-textarea {
+  resize: none;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  min-height: 300px;
+  width: 100%;
+  line-height: 1.6;
+  font-family: 'Noto Sans KR', sans-serif;
+  flex: 1;
+}
+
+.input-toolbar {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.convert-inline-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1.5px solid #4a90e2;
+  background: #fff;
+  color: #357abd;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.result-area {
+  flex: 1;
+  border: 3px solid #c0d3ea;
+  border-radius: 10px;
+  background: #fafdff;
+  padding: 16px;
+  font-size: 1rem;
+  color: #444;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.arrow-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+.arrow-image {
+  width: 35px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.arrow-image:hover {
+  opacity: 0.7;
 }
 
 .template-preview {
@@ -312,4 +222,10 @@ h2 {
   border-radius: 8px;
   margin-bottom: 12px;
   white-space: pre-wrap;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 8px;
 }

@@ -19,6 +19,6 @@ app.add_middleware(
 # static 폴더의 절대경로 지정
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static") 
 
 app.include_router(mail_tone_converter.router, prefix="/mail_tone", tags=["MailTone"])

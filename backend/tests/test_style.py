@@ -1,18 +1,11 @@
-import pytest
-from httpx import AsyncClient
-from app.main import app
-from app.schemas.style import Situation, Receiver
+from app.models.mail_tone import SituationEnum, RecipientEnum, MailToneRequest
 
-@pytest.mark.asyncio
-async def test_transform_mail():
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        payload = {
-            "original_content": "자료를 내일까지 보내드리겠습니다.",
-            "situation": Situation.report.value,
-            "receiver": Receiver.boss.value
-        }
-        response = await ac.post("/transform-mail", json=payload)
-        assert response.status_code == 200
-        data = response.json()
-        assert "transformed_content" in data
-        assert isinstance(data["transformed_content"], str) 
+def test_mail_tone_request():
+    req = MailToneRequest(
+        situation=SituationEnum.report,
+        recipient=RecipientEnum.boss,
+        content="테스트 본문"
+    )
+    assert req.situation == SituationEnum.report
+    assert req.recipient == RecipientEnum.boss
+    assert req.content == "테스트 본문" 

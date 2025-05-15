@@ -2,16 +2,13 @@ from pydantic import BaseModel
 from enum import Enum
 
 class SituationEnum(str, Enum):
-    report = "보고"
-    request = "요청"
-    data_delivery = "자료 전달"
+    payment = "결제"
     apology = "사과"
-    meeting_request = "회의 요청"
+    work_request = "업무요청"
 
 class RecipientEnum(str, Enum):
-    boss = "상사/팀장"
-    coworker = "동료"
-    external_client = "외부 고객"
+    external_mail = "외부 메일"
+    internal_mail = "내부 메일"
 
 class MailToneRequest(BaseModel):
     situation: SituationEnum

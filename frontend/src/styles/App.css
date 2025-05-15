@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: #f0f6fb; */
+  /* background: #051a2b; */
   min-height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
   overflow: hidden;
@@ -9,7 +9,7 @@ body {
 }
 
 .main-wrapper {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 60px 0 32px 0;
   min-height: 100vh;
@@ -19,17 +19,17 @@ body {
 }
 
 .page-title {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   text-align: center;
   color: #222;
   background: #f0f6fb;
-  border-radius: 18px;
+  border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-  padding: 28px 24px;
+  padding: 16px;
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto 28px auto;
+  max-width: 1400px;
+  margin: 0 auto 16px auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -41,9 +41,18 @@ body {
   gap: 16px;
   margin-bottom: 36px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1400px;
   justify-content: flex-start;
+  gap: 32px; 
+  /* background: red; */
 }
+
+.format-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .format-label {
   font-size: 1.08rem;
   color: #333;
@@ -53,8 +62,8 @@ body {
 }
 
 .format-btn {
-  font-size: 1.08rem;
-  padding: 12px 28px;
+  font-size: 1.1rem;
+  padding: 12px 32px;
   border-radius: 999px;
   border: 1.5px solid #4a90e2;
   background: #fff;
@@ -62,16 +71,18 @@ body {
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  transition: all 0.3s ease;
+}
+.format-btn:hover {
+  background: #e6f0fa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74,144,226,0.15);
 }
 .format-btn.selected {
   background: #4a90e2;
   color: #fff;
   border: 2px solid #357abd;
-  box-shadow: 0 4px 16px rgba(74,144,226,0.13);
-}
-.format-btn:hover {
-  background: #e6f0fa;
+  box-shadow: 0 4px 16px rgba(74,144,226,0.2);
 }
 
 .format-buttons-wrapper {
@@ -82,38 +93,74 @@ body {
 
 .content-flex {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
-  max-width: 1000px;
-  gap: 20px;
+  max-width: 1400px;
+  gap: 16px;
   margin: 0 auto 36px auto;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 0 16px;
 }
 
 .box {
-  background: #fff;
+  background: #f0f8ff;
   border-radius: 18px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  padding: 32px 24px;
-  min-width: 340px;
-  min-height: 400px;
+  padding: 16px;
+  min-width: 500px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .left-box {
-  margin-right: 10px;
+  flex: none;
+  width: calc(66.6% - 8px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .right-box {
-  margin-left: 10px;
+  flex: none;
+  width: calc(33.3% - 8px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 h2 {
-  margin-bottom: 18px;
+  margin: 0 0 12px 0;
   font-size: 1.2rem;
   color: #222;
+}
+
+.mail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+.example-mail {
+  margin: 0;
+  padding: 0;
+}
+
+.example-mail h3 {
+  display: none;
+}
+
+.example-mail-content {
+  font-size: 0.95rem;
+  color: #999;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: italic;
+  padding: 4px 0;
 }
 
 .input-area-wrapper {
@@ -121,11 +168,20 @@ h2 {
   display: flex;
   flex-direction: column;
   flex: 1;
-  border: 1px solid #e0e0e0;
+  border: 3px solid #c0d3ea;
   border-radius: 10px;
   background: #fafdff;
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
   padding: 16px;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .input-textarea {
@@ -134,48 +190,72 @@ h2 {
   background: transparent;
   outline: none;
   font-size: 1rem;
-  min-height: 180px;
+  min-height: 400px;
   width: 100%;
+  line-height: 1.6;
+  padding: 4px 0 48px 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.input-textarea:focus {
+  background: #fafdff;
+}
+
+.input-textarea::placeholder {
+  color: #bbb;
+  font-style: italic;
 }
 
 .input-toolbar {
   position: absolute;
-  bottom: 12px;
   right: 16px;
+  bottom: 16px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: auto;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  background: transparent;
+  z-index: 2;
 }
 
 .convert-inline-btn {
-  padding: 8px 20px;
+  padding: 10px 24px;
   border-radius: 999px;
   border: 1.5px solid #4a90e2;
   background: #fff;
   color: #357abd;
   font-weight: 500;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
 
 .convert-inline-btn:hover {
   background: #e6f0fa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74,144,226,0.15);
 }
 
 .result-area {
+  width: 100%;
+
+  box-sizing: border-box;
   flex: 1;
-  border: 1px solid #e0e0e0;
+  border: 3px solid #c0d3ea;
   border-radius: 10px;
   padding: 16px;
   background: #fafdff;
-  font-size: 1rem;
-  min-height: 200px;
+  font-size: 1.1rem;
+  min-height: 300px;
   color: #444;
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
   white-space: pre-wrap;
   display: flex;
   align-items: flex-start;
+  margin: 0;
 }
 
 .app-center {
@@ -196,7 +276,7 @@ h2 {
 }
 
 .hero-illustration {
-  width: 180px;
+  width: 140px;
   height: auto;
   object-fit: contain;
 }
@@ -206,7 +286,7 @@ h2 {
 }
 
 .title-text h1 {
-  font-size: 3.5rem; 
+  font-size: 2.2rem; 
   font-weight: 700;
   margin: 0 0 10px 0;
   color: #222;
@@ -214,7 +294,7 @@ h2 {
 
 .title-text p {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #555;
 }
 
@@ -222,16 +302,29 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 60px;
-  height: 100%;
+  min-width: 40px;
+  height: auto;
+  align-self: stretch;
 }
 
 .arrow-image {
-  width: 55px;
+  width: 35px;
   height: auto;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.arrow-image:hover {
   opacity: 0.7;
 }
 
-.convert-inline-btn:hover {
-  background: #e6f0fa;
+.template-preview {
+  font-size: 0.95rem;
+  color: #888;
+  font-style: italic;
+  background: #f5f7f9;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  white-space: pre-wrap;
 }

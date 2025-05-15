@@ -15,3 +15,7 @@ dist/
 # cursor project files
 .cursor/ 
 .history/
+
+# pyc
+*.pyc
+__pycache__/

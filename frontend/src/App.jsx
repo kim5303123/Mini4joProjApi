@@ -6,7 +6,7 @@ function App() {
   const [outputText, setOutputText] = useState('');
   const [selectedSituation, setSelectedSituation] = useState('');
   const [selectedTarget, setSelectedTarget] = useState('');
-  const formats = ['결재요청 메일', '사과 메일', '업무 협조 요청 메일'];
+  const formats = ['결제요청 메일', '사과 메일', '업무 협조 요청 메일'];
   const to = ['외부', '내부']
 
   const handleConvert = () => {
@@ -17,8 +17,8 @@ function App() {
 
   const getTemplate = (situation) => {
     switch (situation) {
-      case '결재요청 메일':
-        return `예시) 안녕하세요, OOO입니다.\n이번 달 OO비용에 대한 결재를 요청드립니다.\n확인 부탁드립니다.`;
+      case '결제요청 메일':
+        return `예시) 안녕하세요, OOO입니다.\n이번 달 OO비용에 대한 결제를 요청드립니다.\n확인 부탁드립니다.`;
       case '사과 메일':
         return `예시) 안녕하세요, OOO입니다.\n이번 일에 대해 불편을 드려 정말 죄송합니다.\n다시는 같은 일이 발생하지 않도록 주의하겠습니다.`;
       case '업무 협조 요청 메일':
@@ -82,7 +82,7 @@ function App() {
 
       <main className="content-flex">
         <div className="box left-box">
-          <h2>전하고 싶은 말</h2>
+          <h2>입력창</h2>
           <div className="input-area-wrapper">
             <div className="textarea-wrapper">
               <div className="template-preview">
@@ -107,7 +107,7 @@ function App() {
         </div>
 
         <div className="box right-box">
-          <h2>다듬어진 말</h2>
+          <h2>변환 결과창</h2>
           <div className="result-area">
             {outputText || '변환된 문장이 여기에 표시됩니다.'}
           </div>

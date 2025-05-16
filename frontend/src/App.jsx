@@ -5,13 +5,13 @@ import { ChevronsRight } from 'lucide-react';
 
 const formats = ['협조', '사과', '업무 진행 내용 전달'];
 const situationMap = {
-  '결재': '결재',
+  '협조': '협조',
   '사과': '사과',
-  '업무요청': '업무요청',
+  '업무 진행 내용 전달': '업무 진행 내용 전달',
 };
 const recipientMap = {
-  '외부': '외부 메일',
-  '내부': '내부 메일',
+  '외부': '외부',
+  '내부': '내부',
 };
 
 function App() {
@@ -34,11 +34,13 @@ function App() {
     setLoading(true);
     setOutputText('');
     try {
-      const res = await convertMailTone({
+      const params = {
         situation: situationMap[selectedSituation],
         recipient: recipientMap[selectedTarget],
         content: inputText,
-      });
+      };
+      console.log(params);
+      const res = await convertMailTone(params);
       setOutputText(res.converted_content);
     } catch (e) {
       setModalMessage('변환 중 오류가 발생했습니다.');

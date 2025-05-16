@@ -20,13 +20,15 @@ function App() {
   const [selectedSituation, setSelectedSituation] = useState('');
   const [selectedTarget, setSelectedTarget] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const to = ['외부', '내부'];
 
   const handleConvert = async () => {
-    setError('');
     if (!selectedSituation || !selectedTarget || !inputText) {
-      setError('상황, 대상, 내용을 모두 입력해 주세요.');
+      setModalMessage('상황, 대상, 내용을 모두 입력해 주세요.');
+      setShowModal(true);
       return;
     }
     setLoading(true);
@@ -39,7 +41,8 @@ function App() {
       });
       setOutputText(res.converted_content);
     } catch (e) {
-      setError('변환 중 오류가 발생했습니다.');
+      setModalMessage('변환 중 오류가 발생했습니다.');
+      setShowModal(true);
     } finally {
       setLoading(false);
     }
@@ -47,28 +50,52 @@ function App() {
 
   const getTemplate = (situation) => {
     switch (situation) {
-      case '결재요청 메일':
-        return `예시) 안녕하세요, OOO입니다.\n이번 달 OO비용에 대한 결재를 요청드립니다.\n확인 부탁드립니다.`;
-      case '사과 메일':
-        return `예시) 안녕하세요, OOO입니다.\n이번 일에 대해 불편을 드려 정말 죄송합니다.\n다시는 같은 일이 발생하지 않도록 주의하겠습니다.`;
-      case '업무요청':
-        return `예시) 안녕하세요, OOO입니다.\nOO 프로젝트와 관련하여 협조 요청드립니다.\n자세한 사항은 아래 내용을 참고해 주세요.`;
+      case '협조':
+        return `예시) 안녕하세요\n○○건 확인 좀 해주실게 있어서 메일 드립니다.\n내용 보시고 가능하시면 회신 부탁드려요`;
+      case '사과':
+        return `예시) 안녕하세요 ○○님\n오늘 보낸 자료에 숫자 하나 잘못 들어간 거 같아서요\n다시 정리해서 보내드릴게요, 지금 확인 부탁드려요`;
+      case '업무 진행 내용 전달':
+        return `예시) 안녕하세요.\n지금까지 한 부분 정리해서 보내드립니다.\n한번 보시고 필요한 거 있으시면 말씀 주세요`;
       default:
         return `예시) 안녕하세요, OOO입니다.\n저는 OO팀에서 OO업무를 담당하고 있는 OOO입니다.\n이번에 OO 관련하여 문의드립니다.`;
     }
   };
 
+  const handleCopyOutput = () => {
+    if (!outputText) return;
+    navigator.clipboard.writeText(outputText);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 2000);
+  };
+
   return (
     <div className="main-wrapper">
+      {showModal && (
+        <div className="custom-modal-overlay">
+          <div className="custom-modal-box">
+            <img src="/assets/logo4.png" alt="로고" className="custom-modal-logo" />
+            <div className="custom-modal-message">{modalMessage}</div>
+            <button className="custom-modal-btn" onClick={() => setShowModal(false)}>
+              확인
+            </button>
+          </div>
+        </div>
+      )}
+      {showToast && (
+        <div className="toast-message">복사되었습니다!</div>
+      )}
       <header className="page-title">
         <div className="title-row">
-          <img src="/assets/Code snippets-cuate.png" alt="일러스트" className="hero-illustration" />
+          <img src="/assets/logo4.png" alt="로고" className="hero-illustration" />
           <div className="title-text">
-            <h1>개떡에서 찰떡으로!</h1>
-            <p>정중하고 상황에 맞는 메일을 빠르게 완성해보세요</p>
+            <div className="title-main-row">
+              <h1 className="title-main">개떡에서 찰떡으로!</h1>
+            </div>
+            <p className="title-sub">정중하고 상황에 맞는 메일을 빠르게 완성해보세요</p>
           </div>
         </div>
       </header>
+
 
       <section className="selector-section">
         <div className="selector-group">
@@ -115,7 +142,6 @@ function App() {
               onChange={(e) => setInputText(e.target.value)}
             />
             <div className="input-toolbar">
-              <div className="error-message">{error}</div>
               <button
                 className="convert-inline-btn"
                 onClick={handleConvert}
@@ -134,8 +160,14 @@ function App() {
 
         <section className="output-section">
           <h2>다듬어진 말</h2>
-          <div className="result-area">
-            {outputText || '변환된 문장이 여기에 표시됩니다.'}
+          <div className="result-wrapper">
+            <div
+              className="result-area"
+              tabIndex={0}
+              onClick={handleCopyOutput}
+            >
+              {outputText || '변환된 문장이 여기에 표시됩니다.'}
+            </div>
           </div>
         </section>
       </main>

@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from enum import Enum
 
 class SituationEnum(str, Enum):
-    payment = "결제"
+    payment = "결재"
     apology = "사과"
     work_request = "업무요청"
 

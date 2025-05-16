@@ -17,8 +17,8 @@ const recipientMap = {
 function App() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [selectedSituation, setSelectedSituation] = useState('');
-  const [selectedTarget, setSelectedTarget] = useState('');
+  const [selectedSituation, setSelectedSituation] = useState('협조');
+  const [selectedTarget, setSelectedTarget] = useState('내부');
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
@@ -132,7 +132,7 @@ function App() {
       </section>
 
       <main className="content-flex">
-        <section className="input-section">
+        <section className={`input-section ${outputText ? 'converted' : ''}`}>
           <h2>전하고 싶은 말</h2>
           <div className="textarea-wrapper">
             <div className="template-preview">{getTemplate(selectedSituation)}</div>
@@ -160,7 +160,7 @@ function App() {
           <ChevronsRight className={`arrow-icon arrow2 ${loading ? 'arrow-animate2' : ''}`} />
         </div>
 
-        <section className="output-section">
+        <section className={`output-section ${outputText ? 'converted' : ''}`}>
           <h2>다듬어진 말</h2>
           <div className="result-wrapper">
             <div

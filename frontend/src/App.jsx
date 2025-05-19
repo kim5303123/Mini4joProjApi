@@ -93,7 +93,6 @@ function App() {
             <div className="title-main-row">
               <h1 className="title-main">개떡에서 찰떡으로!</h1>
             </div>
-            <p className="title-sub">정중하고 상황에 맞는 메일을 빠르게 완성해보세요</p>
           </div>
         </div>
       </header>

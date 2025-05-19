@@ -160,7 +160,7 @@ body, .main-wrapper {
 }
 
 .input-section h2{
-  margin-top: 0;
+  margin-top: 5px;
   margin-left: 13px;
   font-family: 'OngleipMitmi', sans-serif;
   font-size: 2rem;
@@ -200,7 +200,7 @@ body, .main-wrapper {
 }
 
 .output-section h2{
-  margin-top: 0;
+  margin-top: 5px;
   margin-left: 13px;
   font-family: 'OngleipMitmi', sans-serif;
   font-size: 2rem;
@@ -285,6 +285,7 @@ body, .main-wrapper {
   overflow-x: hidden;
   min-height: 570px;
   transition: border 0.18s, box-shadow 0.18s;
+  max-height: 570px;
 }
 
 .result-area:focus, .result-wrapper:focus-within .result-area {
